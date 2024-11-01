@@ -25,7 +25,7 @@ A React TypeScript implementation of a hierarchical tree component that renders 
 
 1. Clone the repository:
    bash
-   git clone https://github.com/yourusername/tree-component.git
+   git clone https://github.com/EverRunner/custom-tree-component.git
    cd tree-component
 
 2. Install dependencies:
