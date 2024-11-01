@@ -4,13 +4,6 @@ import { v4 as uuidv4 } from 'uuid';
 
 /**
  * TreeItem Component
- *
- * Renders a single item in the tree structure with support for:
- * - Expansion/collapse of child nodes
- * - Keyboard navigation
- * - Search highlighting
- * - Focus management
- *
  * @template T - The type of data being rendered
  */
 interface TreeItemProps<T> {
@@ -38,6 +31,8 @@ interface TreeItemProps<T> {
   itemMatchesSearch?: (item: T, term: string) => boolean;
   /** Callback when focus changes */
   onFocusChange?: (id: string) => void;
+  /** Custom class name for the TreeItem component */
+  className?: string;
 }
 
 const TreeItem = <T,>({
@@ -53,6 +48,7 @@ const TreeItem = <T,>({
   onToggle,
   itemMatchesSearch = () => false,
   onFocusChange,
+  className,
 }: TreeItemProps<T>) => {
   const itemRef = useRef<HTMLDivElement>(null);
   const itemId = useRef(`tree-item-${uuidv4()}`);
@@ -110,7 +106,10 @@ const TreeItem = <T,>({
   }
 
   return (
-    <div style={{ marginLeft: `${level * indentSize}px` }}>
+    <div
+      style={{ marginLeft: `${level * indentSize}px` }}
+      className={className}
+    >
       <div
         ref={itemRef}
         className="flex items-center gap-2"

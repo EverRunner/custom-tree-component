@@ -24,13 +24,16 @@ A React TypeScript implementation of a hierarchical tree component that renders 
 ## 📦 Installation
 
 1. Clone the repository:
-   bash
+
+   ```bash
    git clone https://github.com/EverRunner/custom-tree-component.git
    cd tree-component
+   ```
 
 2. Install dependencies:
-   bash
+   ```bash
    npm install
+   ```
 
 ## 🚀 Running the Application
 
@@ -112,11 +115,30 @@ Code style is enforced using ESLint and Prettier. Configuration files:
 
 ## 🎯 Usage Example
 
+### Importing the Tree Component
+
+To use the Tree component in your project, first import it along with any necessary types and components:
+
 ```tsx
 import Tree from './components/Tree';
 import { TaxonomyItemType } from './lib/types';
+import TaxonomyItem from './components/TaxonomyItem';
+```
+
+### Basic Usage
+
+Here's a basic example of how to render the Tree component with some mock data:
+
+```tsx
+import Tree from './components/Tree';
+import { TaxonomyItemType } from './lib/types';
+import TaxonomyItem from './components/TaxonomyItem';
 
 function App() {
+  const data: TaxonomyItemType[] = [
+    // Add your mock data here
+  ];
+
   return (
     <Tree<TaxonomyItemType>
       items={data}
@@ -128,6 +150,47 @@ function App() {
     />
   );
 }
+```
+
+### Props
+
+- **items**: An array of top-level items to render in the tree.
+- **indentSize**: (Optional) Spacing for each level of indentation in pixels. Default is `20`.
+- **filter**: (Optional) Enable search/filter functionality. Default is `false`.
+- **filterPlaceholder**: (Optional) Placeholder text for the search input. Default is `'Search...'`.
+- **className**: (Optional) Custom class name for the Tree component.
+- **ItemRenderer**: A component to render individual tree items.
+- **error**: (Optional) Error message to display.
+- **loading**: (Optional) Loading state of the tree. Default is `false`.
+- **getChildren**: A function to get children of an item.
+- **searchFilter**: (Optional) A function to determine if an item matches the search term.
+- **onItemClick**: (Optional) Callback when an item is clicked.
+
+### Customization
+
+- **ItemRenderer**: You can customize how each item is rendered by providing your own component. This component will receive the item as a prop.
+- **searchFilter**: Implement custom logic to filter items based on the search term.
+
+### Example
+
+Here's an example of a custom `ItemRenderer`:
+
+```tsx
+const CustomItemRenderer = ({ item }: { item: TaxonomyItemType }) => (
+  <div>
+    <strong>{item.name}</strong> ({item.taxon})
+  </div>
+);
+```
+
+And using it in the Tree component:
+
+```tsx
+<Tree<TaxonomyItemType>
+  items={data}
+  ItemRenderer={CustomItemRenderer}
+  getChildren={(item) => item.children}
+/>
 ```
 
 ## 🤝 Contributing

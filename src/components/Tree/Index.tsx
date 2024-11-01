@@ -14,6 +14,7 @@ import TreeItem from './TreeItem';
  * - Keyboard navigation
  * - Custom item rendering
  * - Loading and error states
+ * - Expand/collapse functionality
  *
  * @template T - The type of data being rendered in the tree
  */
@@ -26,6 +27,8 @@ interface TreeProps<T> {
   filter?: boolean;
   /** Placeholder text for the search input */
   filterPlaceholder?: string;
+  /** Custom class name for the Tree component */
+  className?: string;
   /** Component to render individual tree items */
   ItemRenderer: React.ComponentType<{ item: T }>;
   /** Error message to display */
@@ -45,6 +48,7 @@ const Tree = <T,>({
   indentSize = 20,
   filter = false,
   filterPlaceholder = 'Search...',
+  className,
   ItemRenderer,
   error,
   loading = false,
@@ -136,6 +140,7 @@ const Tree = <T,>({
             indentSize={indentSize}
             item={item}
             ItemRenderer={ItemRenderer}
+            className={className}
             focusId={focusedItemId}
             expandedItems={expandedItems}
             searchTerm={searchTerm}

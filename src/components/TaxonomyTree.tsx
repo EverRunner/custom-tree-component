@@ -7,13 +7,7 @@ import Tree from './Tree/Index';
 
 /**
  * TaxonomyTree component that displays hierarchical taxonomy data in a tree structure.
- * Features include:
- * - Async data loading with loading state
- * - Error handling
- * - Search/filter functionality (optional)
- * - Interactive item clicking
- * - Customizable search filter and click handler
- * - Customizable item renderer
+ * Example of using the Tree component with custom data and rendering.
  */
 export default function TaxonomyTree() {
   const [data, setData] = useState<TaxonomyItemType[]>([]);

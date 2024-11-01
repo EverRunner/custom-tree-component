@@ -1,5 +1,9 @@
 import { TaxonomyItemType } from '@/lib/types';
 
+/**
+ * TaxonomyItem component that displays a single taxonomy item
+ * @param item - The taxonomy item to display
+ */
 export default function TaxonomyItem({ item }: { item: TaxonomyItemType }) {
   return (
     <div>
